@@ -1,0 +1,12 @@
+window_sizes 1600 838 226 1368 469 35
+diagrams
+  active  classdiagram_ref 128130 // DiagrammeClassesCAVA
+    1368 729 100 2 0 0
+end
+show_stereotypes
+selected class_ref 128642 // Panier
+open
+  deploymentview_ref 128130 // classes
+  classview_ref 128130 // classes
+end
+end

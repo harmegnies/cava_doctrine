@@ -1,0 +1,18 @@
+class Pays
+!!!138114.php!!!	hydrate(inout array : )
+  foreach ( $array as $key=>$value ){
+  $this->$key = $value;
+  }
+   Pays::$cpt++; 
+!!!138242.php!!!	compterObj()
+	return Pays::$cpt;
+!!!138370.php!!!	setIdPays(inout idPays : )
+	$this->idPays = $idPays;
+!!!138498.php!!!	setNomPays(inout nomPays : )
+	$this->nomPays = $nomPays;
+!!!138626.php!!!	getIdPays()
+  return $this->idPays;
+!!!138754.php!!!	getNomPays()
+  return $this->nomPays;
+!!!138882.php!!!	__toString()
+  return $this->idPays . " " . $this->nomPays;

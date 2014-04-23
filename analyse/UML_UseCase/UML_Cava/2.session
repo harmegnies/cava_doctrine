@@ -1,0 +1,18 @@
+window_sizes 902 693 156 638 469 35
+diagrams
+  active  classdiagram_ref 128386 // diaClasses
+    748 693 100 4 0 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // UML_Cava
+open
+  class_ref 128130 // Client
+  class_ref 128386 // Produit
+  class_ref 128642 // Commande
+  class_ref 128770 // TypeProduit
+  class_ref 135298 // Adresse
+  class_ref 135426 // Pays
+  deploymentview_ref 128002 // deploy_View
+end
+end

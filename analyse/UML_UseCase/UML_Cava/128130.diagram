@@ -1,0 +1,105 @@
+format 76
+
+subject 128002 ""
+  xyzwh 155 13 2000 464 564
+classcanvas 128130 class_ref 128002 // Guest
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 77 82 2000
+end
+classcanvas 128258 class_ref 128130 // Client
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 65 253 2006
+end
+classcanvas 128514 class_ref 128258 // Admin
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 86 470 2012
+end
+usecasecanvas 128770 usecase_ref 129154 // Se connecter
+  xyzwh 248 101 3005 64 32 label_xy 248 133
+end
+note 129026 "via formulaire + variable Session"
+  xyzwh 374 68 2005 181 37
+usecasecanvas 129282 usecase_ref 129282 // Gérer son profil
+  xyzwh 361 157 3005 64 32 label_xy 355 189
+end
+usecasecanvas 129666 usecase_ref 129410 // Se déconnecter
+  xyzwh 203 34 3005 64 32 label_xy 197 66
+end
+usecasecanvas 129922 usecase_ref 128002 // Consulter la liste des vins
+  xyzwh 319 261 3005 64 32 label_xy 290 293
+end
+usecasecanvas 130050 usecase_ref 128130 // Voir détail Vin
+  xyzwh 498 244 3011 64 32 label_xy 497 276
+end
+usecasecanvas 130306 usecase_ref 129538 // Gérer son panier
+  xyzwh 485 440 3005 64 32 label_xy 476 472
+end
+usecasecanvas 130946 usecase_ref 129794 // Passer commande
+  xyzwh 237 367 3005 64 32 label_xy 225 399
+end
+note 131458 "si panier rempli"
+  xyzwh 340 462 2005 101 37
+usecasecanvas 131714 usecase_ref 129922 // Modifier ses coordonnées
+  xyzwh 499 120 3005 64 32 label_xy 468 152
+end
+usecasecanvas 131970 usecase_ref 130050 // Voir son historique d'achat
+  xyzwh 506 180 3005 64 32 label_xy 474 212
+end
+usecasecanvas 132226 usecase_ref 130178 // Réclamer
+  xyzwh 211 473 3005 64 32 label_xy 220 505
+end
+note 132482 "Formulaire ADR"
+  xyzwh 322 515 2005 105 47
+relationcanvas 128386 relation_ref 128002 // <generalisation>
+  from ref 128258 z 2007 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 128130 // <generalisation>
+  from ref 128514 z 2013 to ref 128258
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 128898 ----
+  from ref 128258 z 3006 to ref 128770
+line 129410 ----
+  from ref 128258 z 3006 to ref 129282
+simplerelationcanvas 129538 simplerelation_ref 128514
+  decenter_end 578
+  from ref 129282 z 3006 stereotype "<<include>>" xyz 293 144 3000 to ref 128770
+end
+line 129794 ----
+  from ref 128258 z 3006 to ref 129666
+simplerelationcanvas 130178 simplerelation_ref 128002
+  from ref 130050 z 3012 stereotype "<<extend>>" xyz 411 266 3012 to ref 129922
+end
+line 130434 ----
+  from ref 128258 z 3006 to ref 129922
+simplerelationcanvas 130690 simplerelation_ref 128770
+  from ref 130306 z 3006 stereotype "<<extend>>" xyz 404 365 3000 to ref 129922
+end
+simplerelationcanvas 130818 simplerelation_ref 128898
+  decenter_end 859
+  from ref 130306 z 3012 stereotype "<<extend>>" xyz 505 357 3000 to ref 130050
+end
+simplerelationcanvas 131202 simplerelation_ref 129154
+  from ref 130946 z 3006 stereotype "<<include>>" xyz 243 249 3000 to ref 128770
+end
+simplerelationcanvas 131330 simplerelation_ref 129282
+  from ref 130946 z 3006 stereotype "<<extend>>" xyz 364 417 3000 to ref 130306
+end
+simplerelationcanvas 131842 simplerelation_ref 129410
+  from ref 131714 z 3006 to ref 129282
+end
+simplerelationcanvas 132098 simplerelation_ref 129538
+  from ref 131970 z 3006 to ref 129282
+end
+line 132354 ----
+  from ref 128258 z 3006 to ref 132226
+line 129154 -_-_
+  from ref 128770 z 3006 to ref 129026
+line 131586 -_-_
+  from ref 131458 z 3007 to ref 131330
+line 132610 -_-_
+  from ref 132226 z 3006 to ref 132482
+end

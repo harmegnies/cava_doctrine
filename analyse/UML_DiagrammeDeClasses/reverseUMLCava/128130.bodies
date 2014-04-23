@@ -1,0 +1,34 @@
+class Adresse
+!!!128130.php!!!	compterObj()
+	return Adresse::$cpt;
+!!!128386.php!!!	hydrate(inout array : )
+  foreach ( $array as $key=>$value ){
+  $this->$key = $value;
+  }
+  Adresse::$cpt++;  
+!!!128514.php!!!	__toString()
+ return $this->idAdresse . ", " . $this->rue . " " . $this->codePostal . " " . $this->localite . " ; " . $this->pays;
+!!!128642.php!!!	setIdAdresse(inout idAdresse : )
+	$this->idAdresse = $idAdresse;
+!!!128770.php!!!	setRue(inout rue : )
+	$this->rue = $rue;
+!!!128898.php!!!	setNr(inout nr : )
+	$this->nr = $nr;
+!!!129026.php!!!	setCodePostal(inout codePostal : )
+	$this->codePostal = $codePostal;
+!!!129154.php!!!	setLocalite(inout localite : )
+	$this->localite = $localite;
+!!!129282.php!!!	setPays(inout pays : Pays)
+	$this->pays = $pays;
+!!!129410.php!!!	getIdAdresse()
+  return $this->idAdresse;
+!!!129538.php!!!	getRue()
+  return $this->rue;
+!!!129666.php!!!	getNr()
+  return $this->nr;
+!!!129794.php!!!	getCodePostal()
+  return $this->codePostal;
+!!!129922.php!!!	getLocalite()
+  return $this->localite;
+!!!130050.php!!!	getPays()
+  return $this->pays;

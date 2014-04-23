@@ -1,0 +1,46 @@
+class Produit
+!!!139010.php!!!	compterObj()
+	return Produit::$cpt;
+!!!139138.php!!!	__construct()
+  
+!!!139266.php!!!	hydrate(inout array : )
+  foreach ( $array as $key=>$value ){
+  $this->$key = $value;
+  }
+  Produit::$cpt++;
+!!!139394.php!!!	__toString()
+	return $this->idProduit . " " . $this->nomProduit . " " . $this->refProduit . " " . 
+	$this->prixHTVA . " " . $this->tauxTVA . " " . $this->description . " " . $this->millesime . " " .
+	$this->contenant . " ; " . $this->typeProduit;
+!!!139522.php!!!	setIdProduit(inout idProduit : )
+	$this->idProduit = $idProduit;
+!!!139650.php!!!	getIdProduit()
+	return $this->idProduit;
+!!!139778.php!!!	setNomProduit(inout nomProduit : )
+	$this->nomProduit = $nomProduit;
+!!!139906.php!!!	getNomProduit()
+	return $this->nomProduit;
+!!!140034.php!!!	setRefProduit(inout refProduit : )
+	$this->refProduit = $refProduit;
+!!!140162.php!!!	getRefProduit()
+	return $this->refProduit;
+!!!140290.php!!!	setPrixHTVA(inout prixHTVA : )
+	$this->prixHTVA = $prixHTVA;
+!!!140418.php!!!	getPrixHTVA()
+	return $this->prixHTVA;
+!!!140546.php!!!	setTauxTVA(inout tauxTVA : )
+	$this->tauxTVA = $tauxTVA;
+!!!140674.php!!!	getTauxTVA()
+	return $this->tauxTVA;
+!!!140802.php!!!	setDescription(inout description : )
+	$this->description = $description;
+!!!140930.php!!!	getDescription()
+	return $this->description;
+!!!141058.php!!!	setMillesime(inout millesime : )
+	$this->millesime = $millesime;
+!!!141186.php!!!	getMillesime()
+	return $this->millesime;
+!!!141314.php!!!	setContenant(inout contenant : )
+	$this->contenant = $contenant;
+!!!141442.php!!!	getContenant()
+	return $this->contenant;

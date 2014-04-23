@@ -1,0 +1,33 @@
+class Commande
+!!!133250.php!!!	compterObj()
+	return Commande::$cpt;
+!!!133506.php!!!	__toString()
+  return $this->idCommande . " " . $this->reference . " " . $this->dateCommande;
+!!!133634.php!!!	setIdCommande(inout idCommande : )
+	$this->idCommande = $idCommande;
+!!!133762.php!!!	getIdCommande()
+	return $this->idCommande;
+!!!133890.php!!!	setReference(inout reference : )
+	$this->reference = $reference;
+!!!134018.php!!!	getReference()
+	return $this->reference;
+!!!134146.php!!!	setDateCommande(inout dateCommande : )
+	$this->dateCommande = $dateCommande;
+!!!134274.php!!!	getDateCommande()
+	return $this->dateCommande;
+!!!134402.php!!!	setModePaiement(inout modePaiement : )
+	$this->modePaiement = $modePaiement;
+!!!134530.php!!!	getModePaiement()
+	return $this->ModePaiement;
+!!!134658.php!!!	setClient(inout client : Client)
+	$this->client = $client;
+!!!134786.php!!!	getClient()
+	return $this->client;
+!!!134914.php!!!	setMonPanier(inout panier : Panier)
+	$this->monPanier = $panier;
+!!!135042.php!!!	getMonPanier()
+	return $this->monPanier;
+!!!135170.php!!!	setAdresseLivraison(inout adresse : Adresse)
+	$this->adresseLivraison = $adresse;
+!!!135298.php!!!	getAdresseLivraison()
+	return $this->adresseLivraison;

@@ -1,0 +1,2496 @@
+format 76
+"classes" // classes
+  revision 1
+  modified_by 2 "hpph"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  deploymentview 128130 "classes"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 128130 "Adresse"
+      stereotype "source"
+      php_src "<?php
+require_once 'Pays.php';
+
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128130 // Adresse
+      end
+    end
+
+    artifact 128258 "Client"
+      stereotype "source"
+      php_src "<?php
+require_once 'Adresse.php';
+
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128386 // Client
+      end
+    end
+
+    artifact 128386 "Commande"
+      stereotype "source"
+      php_src "<?php
+require_once 'Panier.php';
+require_once 'Adresse.php';
+
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128514 // Commande
+      end
+    end
+
+    artifact 128514 "Panier"
+      stereotype "source"
+      php_src "<?php
+require_once 'Produit.php';
+
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128642 // Panier
+      end
+    end
+
+    artifact 128642 "Pays"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128258 // Pays
+      end
+    end
+
+    artifact 128770 "Produit"
+      stereotype "source"
+      php_src "<?php
+require_once 'TypeProduit.php';
+
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128770 // Produit
+      end
+    end
+
+    artifact 128898 "testerClasses"
+      stereotype "source"
+      php_src "<?php
+require_once(\"Pays.php\");
+require_once(\"Adresse.php\");
+$pays = new Pays(\"Belgique\",25);
+
+echo $pays;
+echo \"<br/>\";
+echo \"nombre d'objets Pays : \" . Pays::compterObj();
+echo \"<br/>\";
+
+// tableau
+$array = array(\"rue\"=>\"rue des champs\",
+\"nr\"=>\"100\",
+\"codePostal\"=>\"7000\",
+\"localite\"=>\"Mons\",
+\"pays\"=>$pays,
+\"idAdresse\"=>50);
+$adresse = new Adresse();
+$adresse->hydrate($array);
+echo $adresse . \"<br/>\";
+echo \"nombre d'objets Adresse : \" . Adresse::compterObj();
+
+?>"
+      associated_classes
+      end
+    end
+
+    artifact 129026 "testerPanier"
+      stereotype "source"
+      php_src "<?php
+require_once(\"Produit.php\");
+require_once(\"Panier.php\");
+require_once(\"TypeProduit.php\");
+
+$type1 = new TypeProduit();
+$type1->hydrate(array(\"idTypeProduit\" => 1, \"typeProduit\"=>\"blanc\"));
+$type2 = new TypeProduit();
+$type2->hydrate(array(\"idTypeProduit\" => 2, \"typeProduit\"=>\"rouge\"));
+
+// créer un produit1 vin rouge
+$produit1 = new Produit();
+$tab = array(\"idProduit\"=>1,
+\"nomProduit\"=>\"Château Laffite\",
+\"refProduit\"=>\"R45896\",
+\"prixHTVA\"=>120.50,
+\"tauxTVA\"=>0.21,
+\"description\"=>\"bordeau rouge\",
+\"millesime\"=>2000,
+\"contenant\"=>\"bouteille 75 cl\",
+\"typeProduit\"=>$type2);
+$produit1->hydrate($tab);
+echo $produit1 . \"<br/>\";
+
+// créer un produit2 vin rouge
+$produit2 = new Produit();
+$tab = array(\"idProduit\"=>2,
+\"nomProduit\"=>\"Château Margot\",
+\"refProduit\"=>\"R45845\",
+\"prixHTVA\"=>100.50,
+\"tauxTVA\"=>0.21,
+\"description\"=>\"bordeau rouge\",
+\"millesime\"=>1950,
+\"contenant\"=>\"bouteille 75 cl\",
+\"typeProduit\"=>$type2);
+$produit2->hydrate($tab);
+echo $produit2 . \"<br/>\";
+
+// créer un produit1 vin blanc
+$produit3 = new Produit();
+$tab = array(\"idProduit\"=>3,
+\"nomProduit\"=>\"Chablis\",
+\"refProduit\"=>\"R45896\",
+\"prixHTVA\"=>110.0,
+\"tauxTVA\"=>0.21,
+\"description\"=>\"bourgogne blanc\",
+\"millesime\"=>2008,
+\"contenant\"=>\"bouteille 75 cl\",
+\"typeProduit\"=>$type1);
+$produit3->hydrate($tab);
+echo $produit3 . \"<br/>\";
+echo \"____________________________<br/>\";
+//***********************************
+$panier = new Panier();
+$panier->ajouterProduit($produit1,10);
+$panier->ajouterProduit($produit2,5);
+$panier->ajouterProduit($produit3,5);
+
+
+echo \"montant du panier : \" . $panier->calculerPanier() . \" euros<br/>\";
+echo \"____________________________<br/>\";
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+echo \"nombre de produits : \" . $panier->nbProduits();
+echo \"<br/>\";
+echo \"nombre d'articles : \" . $panier->nbArticles();
+echo \"<br/>\";
+echo \"____________________________<br/>\";
+
+// trier selon le produit
+echo \"trier selon libellé <br/>\";
+$panier->trierPanierLibelleProduit();
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+echo \"trier selon id du produit <br/>\";
+$panier->trierPanierIdProduit();
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+echo \"trier selon quantité <br/>\";
+$panier->trierPanierQuantite();
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+
+// incrémenter produit
+echo \"incrémenter chablis <br/>\";
+$panier->incrementerProduit($produit3);
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+echo \"décrémenter chablis <br/>\";
+$panier->decrementerProduit($produit3);
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+
+// modifier produit
+$panier->modifierProduit($produit3,50);
+echo nl2br($panier->afficherPanier());
+echo \"____________________________<br/>\";
+
+?>"
+      associated_classes
+      end
+    end
+
+    artifact 129154 "TypeProduit"
+      stereotype "source"
+      php_src "<?php
+${definition}
+
+
+?>
+"
+      associated_classes
+	class_ref 128898 // TypeProduit
+      end
+    end
+  end
+
+  classview 128130 "classes"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default class_drawing_mode default drawing_language default package_name_in_tab default show_context default show_msg_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 128130 "Adresse"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 128130 "pays"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128258 "idAdresse"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "objet Pays"
+      end
+
+      attribute 128386 "rue"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "integer"
+      end
+
+      attribute 128514 "nr"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 128642 "codePostal"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 128770 "localite"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 128898 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string  "
+      end
+
+      operation 128130 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer"
+      end
+
+      operation 128258 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128386 "hydrate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128514 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128642 "setIdAdresse"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idAdresse" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128770 "setRue"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "rue" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 128898 "setNr"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "nr" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129026 "setCodePostal"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "codePostal" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129154 "setLocalite"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "localite" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129282 "setPays"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "pays" type class_ref 128258 // Pays
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129410 "getIdAdresse"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129538 "getRue"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129666 "getNr"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129794 "getCodePostal"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 129922 "getLocalite"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130050 "getPays"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128130 // <unidirectional association>
+	relation 128130 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128130 // <unidirectional association>
+	  b parent class_ref 128258 // Pays
+      end
+    end
+
+    class 128258 "Pays"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 131586 "idPays"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131714 "nomPays"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " integer"
+      end
+
+      attribute 131842 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " string"
+      end
+
+      operation 137986 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer  "
+      end
+
+      operation 138114 "hydrate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138242 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138370 "setIdPays"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idPays" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138498 "setNomPays"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "nomPays" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138626 "getIdPays"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138754 "getNomPays"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 138882 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    class 128386 "Client"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 129026 "adresse"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129154 "idClient"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "objet Adresse"
+      end
+
+      attribute 129282 "nomClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "integer"
+      end
+
+      attribute 129410 "prenomClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 129538 "emailClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 129666 "sexeClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 129794 "dateNaissanceClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string  "
+      end
+
+      attribute 129922 "societeClient"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " DateTime"
+      end
+
+      attribute 130050 "nTVA"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 130178 "dateInscription"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "string"
+      end
+
+      attribute 130306 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "DateTime"
+      end
+
+      operation 130178 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer"
+      end
+
+      operation 130306 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130434 "hydrate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130562 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130690 "setIdClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130818 "setNomClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "nomClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 130946 "setPrenomClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "prenomClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131074 "setEmailClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "emailClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131202 "setSexeClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "sexeClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131330 "setDateNaissanceClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "dateNaissanceClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131458 "setSocieteClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "societeClient" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131586 "setNTVA"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "nTVA" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131714 "setDateInscription"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "dateInscription" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131842 "setAdresse"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "adresse" type class_ref 128130 // Adresse
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 131970 "getIdClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132098 "getNomClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132226 "getPrenomClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132354 "getEmailClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132482 "getSexeClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132610 "getDateNaissanceClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132738 "getSocieteClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132866 "getNTVA"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 132994 "getDateInscription"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133122 "getAdresse"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128258 // <unidirectional association>
+	relation 128258 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128258 // <unidirectional association>
+	  b parent class_ref 128130 // Adresse
+      end
+    end
+
+    class 128514 "Commande"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 130434 "client"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130562 "monPanier"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "objet Client"
+      end
+
+      attribute 130690 "adresseLivraison"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment "objet Panier"
+      end
+
+      attribute 130818 "idCommande"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " objet Adresse"
+      end
+
+      attribute 130946 "reference"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131074 "dateCommande"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131202 "modePaiement"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131330 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 133250 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer  "
+      end
+
+      operation 133378 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133506 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133634 "setIdCommande"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idCommande" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " getter et setter"
+      end
+
+      operation 133762 "getIdCommande"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 133890 "setReference"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "reference" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134018 "getReference"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134146 "setDateCommande"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "dateCommande" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134274 "getDateCommande"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134402 "setModePaiement"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "modePaiement" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134530 "getModePaiement"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134658 "setClient"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "client" type class_ref 128386 // Client
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134786 "getClient"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 134914 "setMonPanier"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "panier" type class_ref 128642 // Panier
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135042 "getMonPanier"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135170 "setAdresseLivraison"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "adresse" type class_ref 128130 // Adresse
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 135298 "getAdresseLivraison"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128386 // <unidirectional association>
+	relation 128386 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128386 // <unidirectional association>
+	  b parent class_ref 128130 // Adresse
+      end
+
+      classrelation 128514 // <unidirectional association>
+	relation 128514 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128514 // <unidirectional association>
+	  b parent class_ref 128386 // Client
+      end
+
+      classrelation 128642 // <unidirectional association>
+	relation 128642 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128642 // <unidirectional association>
+	  b parent class_ref 128642 // Panier
+      end
+    end
+
+    class 128642 "Panier"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 131458 "listeProduits"
+	private explicit_type ""
+	init_value " array()"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 135426 "nbProduits"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " tableau 2 dim 
+ retourne un integer nombre de produits dans le panier"
+      end
+
+      operation 135554 "nbArticles"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " retourne le nombre d'articles"
+      end
+
+      operation 135682 "calculerPanier"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return float"
+      end
+
+      operation 135810 "afficherPanier"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return string
+ utiliser la fonction nl2br pour remplacer \\n par la balise <br/>"
+      end
+
+      operation 135938 "ajouterProduit"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "produit" type class_ref 128770 // Produit
+	  param inout name "quantite" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return boolean"
+      end
+
+      operation 136066 "rechercherProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "produit" type class_ref 128770 // Produit
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return boolean"
+      end
+
+      operation 136194 "trouverProduit"
+	private explicit_return_type ""
+	nparams 1
+	  param inout name "produit" type class_ref 128770 // Produit
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return la position dans le tableau 2 dimensions
+ retourne -1 si pas trouvé"
+      end
+
+      operation 136322 "trouverProduitSelonId"
+	private explicit_return_type ""
+	nparams 1
+	  param inout name "idProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return la position en lui passant un id (integer)
+ retourne -1 si pas trouvé"
+      end
+
+      operation 136450 "supprimerProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "produit" type class_ref 128770 // Produit
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return boolean"
+      end
+
+      operation 136578 "supprimerProduitSelonId"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return boolean"
+      end
+
+      operation 136706 "viderPanier"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " return string"
+      end
+
+      operation 136834 "trierPanierQuantite"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "*********************************
+ selon le libellé, selon le nr référence ou autre possibilité"
+      end
+
+      operation 136962 "trierPanierIdProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137090 "trierPanierLibelleProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137218 "comparerQte"
+	class_operation package explicit_return_type ""
+	nparams 2
+	  param inout name "a" explicit_type ""
+	  param inout name "b" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " créer les fonctions de comparaison
+ fonction static qui doit retourner -1,0 ou 1"
+      end
+
+      operation 137346 "comparerId"
+	class_operation package explicit_return_type ""
+	nparams 2
+	  param inout name "a" explicit_type ""
+	  param inout name "b" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137474 "comparerLibelle"
+	class_operation package explicit_return_type ""
+	nparams 2
+	  param inout name "a" explicit_type ""
+	  param inout name "b" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 137602 "decrementerProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "produit" type class_ref 128770 // Produit
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " pour decrementer la quantité de 1"
+      end
+
+      operation 137730 "incrementerProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "produit" type class_ref 128770 // Produit
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " pour incrémenter la quantité de 1"
+      end
+
+      operation 137858 "modifierProduit"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "produit" type class_ref 128770 // Produit
+	  param inout name "quantite" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${t0} ${p0}${v0}, ${p1}${v1}${)}
+{
+  ${body}}
+"
+	
+	
+	comment "modifier produit"
+      end
+
+      classrelation 128770 // <directional aggregation>
+	relation 128770 o-->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128770 // <directional aggregation>
+	  b parent class_ref 128770 // Produit
+      end
+    end
+
+    class 128770 "Produit"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 131970 "typeProduit"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132098 "idProduit"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " objet TypeProduit"
+      end
+
+      attribute 132226 "nomProduit"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " integer"
+      end
+
+      attribute 132354 "refProduit"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " string"
+      end
+
+      attribute 132482 "prixHTVA"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " string"
+      end
+
+      attribute 132610 "tauxTVA"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " float"
+      end
+
+      attribute 132738 "description"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " float"
+      end
+
+      attribute 132866 "millesime"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " string"
+      end
+
+      attribute 132994 "contenant"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " integer"
+      end
+
+      attribute 133122 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+	comment " string Volume"
+      end
+
+      operation 139010 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer  "
+      end
+
+      operation 139138 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139266 "hydrate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139394 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139522 "setIdProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139650 "getIdProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139778 "setNomProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "nomProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 139906 "getNomProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140034 "setRefProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "refProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140162 "getRefProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140290 "setPrixHTVA"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "prixHTVA" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140418 "getPrixHTVA"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140546 "setTauxTVA"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "tauxTVA" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140674 "getTauxTVA"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140802 "setDescription"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "description" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 140930 "getDescription"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141058 "setMillesime"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "millesime" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141186 "getMillesime"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141314 "setContenant"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "contenant" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141442 "getContenant"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      classrelation 128898 // <unidirectional association>
+	relation 128898 --->
+	  a role_name "" private
+	    php "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	    classrelation_ref 128898 // <unidirectional association>
+	  b parent class_ref 128898 // TypeProduit
+      end
+    end
+
+    class 128898 "TypeProduit"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133250 "idTypeProduit"
+	private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133378 "typeProduit"
+	private explicit_type ""
+	init_value " null"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133506 "cpt"
+	class_attribute private explicit_type ""
+	init_value " 0"
+	cpp_decl ""
+	java_decl ""
+	php_decl "  ${comment}${visibility}${const}${static}${var}${name}${value};
+"
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 141570 "compterObj"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+	comment " integer  "
+      end
+
+      operation 141698 "__construct"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${visibility}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141826 "hydrate"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "array" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 141954 "setIdTypeProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "idTypeProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142082 "setTypeProduit"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "typeProduit" explicit_type ""
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${p0}${v0}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142210 "getIdTypeProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142338 "getTypeProduit"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+
+      operation 142466 "__toString"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	preserve_php_body_indent php_def "  ${comment}${final}${visibility}${abstract}${static}function ${name}${(}${)}
+{
+  ${body}}
+"
+	
+	
+      end
+    end
+
+    classdiagram 128130 "DiagrammeClassesCAVA"
+      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition yes show_members_visibility yes show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language php show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A2
+    end
+  end
+end

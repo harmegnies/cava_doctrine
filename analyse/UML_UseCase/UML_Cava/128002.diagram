@@ -1,0 +1,97 @@
+format 76
+
+subject 128002 ""
+  xyzwh 209 -6 2000 463 626
+classcanvas 128130 class_ref 128002 // Guest
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 92 64 2000
+end
+classcanvas 128258 class_ref 128130 // Client
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 63 256 2000
+end
+classcanvas 128386 class_ref 128258 // Admin
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 76 473 2000
+end
+usecasecanvas 128770 usecase_ref 128002 // Consulter la liste des vins
+  xyzwh 275 35 3005 64 32 label_xy 246 67
+end
+usecasecanvas 129026 usecase_ref 128130 // Voir détail Vin
+  xyzwh 518 30 3005 64 32 label_xy 517 62
+end
+note 129282 "pagination maître - esclave"
+  xyzwh 578 130 2005 185 37
+usecasecanvas 129538 usecase_ref 128258 // S'inscrire comme client
+  xyzwh 306 208 3005 64 32 label_xy 283 240
+end
+usecasecanvas 129794 usecase_ref 128386 // Envoi Mail Confirmation
+  xyzwh 488 226 3005 64 32 label_xy 465 258
+end
+usecasecanvas 130050 usecase_ref 128514 // S'abonner à la NewsLetter
+  xyzwh 332 291 3005 64 32 label_xy 300 323
+end
+usecasecanvas 130306 usecase_ref 128642 // Contacter l'administrateur
+  xyzwh 338 379 3005 64 32 label_xy 309 411
+end
+note 130562 "via formulaire html"
+  xyzwh 445 339 3010 93 35
+usecasecanvas 130818 usecase_ref 128770 // Rechercher un produit
+  xyzwh 314 466 3005 64 32 label_xy 292 498
+end
+usecasecanvas 131586 usecase_ref 129026 // Recherche avancée sur critères
+  xyzwh 280 542 3011 64 32 label_xy 234 574
+end
+note 131842 "via la HomePage"
+  xyzwh 403 435 2005 87 45
+note 132226 "via une page Web spéciale"
+  xyzwh 412 531 2005 119 51
+usecasecanvas 132482 usecase_ref 129538 // Gérer son panier
+  xyzwh 415 143 3011 64 32 label_xy 406 175
+end
+relationcanvas 128514 relation_ref 128002 // <generalisation>
+  from ref 128258 z 2001 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 128130 // <generalisation>
+  from ref 128386 z 2001 to ref 128258
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 128898 ----
+  from ref 128130 z 3006 to ref 128770
+simplerelationcanvas 129154 simplerelation_ref 128002
+  from ref 129026 z 3006 stereotype "<<extend>>" xyz 399 46 3000 to ref 128770
+end
+line 129666 ----
+  from ref 128130 z 3006 to ref 129538
+simplerelationcanvas 129922 simplerelation_ref 128130
+  decenter_end 280
+  from ref 129538 z 3006 stereotype "<<include>>" xyz 398.5 229.5 3000 to ref 129794
+end
+line 130178 ----
+  from ref 128130 z 3006 to ref 130050
+line 130434 ----
+  from ref 128130 z 3006 to ref 130306
+line 130946 ----
+  from ref 128130 z 3006 to ref 130818
+line 132098 ----
+  from ref 128130 z 3012 to ref 131586
+simplerelationcanvas 132610 simplerelation_ref 128770
+  from ref 132482 z 3012 stereotype "<<extend>>" xyz 347 103.5 3000 to ref 128770
+end
+simplerelationcanvas 132738 simplerelation_ref 128898
+  from ref 132482 z 3012 stereotype "<<extend>>" xyz 466 101.5 3000 to ref 129026
+end
+line 133250 ----
+  from ref 128130 z 3012 to ref 132482
+line 129410 -_-_
+  from ref 129282 z 3007 to ref 129154
+line 130690 -_-_
+  from ref 130306 z 3011 to ref 130562
+line 131970 -_-_
+  from ref 130818 z 3006 to ref 131842
+line 132354 -_-_
+  from ref 131586 z 3012 to ref 132226
+end

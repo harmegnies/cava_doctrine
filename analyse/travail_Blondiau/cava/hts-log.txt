@@ -1,0 +1,18 @@
+HTTrack3.44-1+htsswf+htsjava launched on Sun, 24 Feb 2013 09:01:45 at www.smartgraphics.be/cava +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2010], %s -->" -%l "fr, en, *" www.smartgraphics.be/cava -O1 "D:\wamp\www\TFE_Quentin\Site CAVA" +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/rouges.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/blancs.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/rosés.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/bordeaux.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/medoc.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/cabernet.html (from www.smartgraphics.be/cava/nosvins.html)
+09:02:30	Error: 	"Not Found" (404) at link www.smartgraphics.be/cava/sauvignon.html (from www.smartgraphics.be/cava/nosvins.html)
+
+HTTrack Website Copier/3.44-1 mirror complete in 45 seconds : 45 links scanned, 37 files written (1074745 bytes overall) [1090146 bytes received at 24225 bytes/sec], 9.2 requests per connection
+(7 errors, 0 warnings, 0 messages)

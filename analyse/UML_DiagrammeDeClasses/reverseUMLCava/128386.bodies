@@ -1,0 +1,50 @@
+class Client
+!!!130178.php!!!	compterObj()
+	return Client::$cpt;
+!!!130434.php!!!	hydrate(inout array : )
+  foreach ( $array as $key=>$value ){
+  $this->$key = $value;
+  }
+  Client::$cpt++;  
+!!!130562.php!!!	__toString()
+ return $this->idClient . ", " . $this->nomClient . " " . $this->prenomClient . " " . $this->emailClient;
+!!!130690.php!!!	setIdClient(inout idClient : )
+	$this->idClient = $idClient;
+!!!130818.php!!!	setNomClient(inout nomClient : )
+	$this->nomClient = $nomClient;
+!!!130946.php!!!	setPrenomClient(inout prenomClient : )
+	$this->prenomClient = $prenomClient;
+!!!131074.php!!!	setEmailClient(inout emailClient : )
+	$this->emailClient = $emailClient;
+!!!131202.php!!!	setSexeClient(inout sexeClient : )
+	$this->sexeClient = $sexeClient;
+!!!131330.php!!!	setDateNaissanceClient(inout dateNaissanceClient : )
+	$this->dateNaissanceClient = $dateNaissanceClient;
+!!!131458.php!!!	setSocieteClient(inout societeClient : )
+	$this->societeClient = $societeClient;
+!!!131586.php!!!	setNTVA(inout nTVA : )
+	$this->nTVA = $nTVA;
+!!!131714.php!!!	setDateInscription(inout dateInscription : )
+	$this->dateInscription = $dateInscription;
+!!!131842.php!!!	setAdresse(inout adresse : Adresse)
+	$this->adresse = $adresse;
+!!!131970.php!!!	getIdClient()
+	return $this->idClient;
+!!!132098.php!!!	getNomClient()
+	return $this->nomClient;
+!!!132226.php!!!	getPrenomClient()
+	return $this->prenomClient;
+!!!132354.php!!!	getEmailClient()
+	return $this->emailClient;
+!!!132482.php!!!	getSexeClient()
+	return $this->sexeClient;
+!!!132610.php!!!	getDateNaissanceClient()
+	return $this->dateNaissanceClient;
+!!!132738.php!!!	getSocieteClient()
+	return $this->societeClient;
+!!!132866.php!!!	getNTVA()
+	return $this->nTVA;
+!!!132994.php!!!	getDateInscription()
+	return $this->dateInscription;
+!!!133122.php!!!	getAdresse()
+	return $this->adresse;

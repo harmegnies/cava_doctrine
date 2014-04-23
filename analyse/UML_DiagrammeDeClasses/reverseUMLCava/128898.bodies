@@ -1,0 +1,18 @@
+class TypeProduit
+!!!141570.php!!!	compterObj()
+	return TypeProduit::$cpt;
+!!!141826.php!!!	hydrate(inout array : )
+  foreach ( $array as $key=>$value ){
+  $this->$key = $value;
+  }
+  TypeProduit::$cpt++;  
+!!!141954.php!!!	setIdTypeProduit(inout idTypeProduit : )
+	$this->idTypeProduit = $idTypeProduit;
+!!!142082.php!!!	setTypeProduit(inout typeProduit : )
+	$this->typeProduit = $typeProduit;
+!!!142210.php!!!	getIdTypeProduit()
+  return $this->idTypeProduit;
+!!!142338.php!!!	getTypeProduit()
+  return $this->typeProduit;
+!!!142466.php!!!	__toString()
+  return $this->idTypeProduit . " " . $this->typeProduit;
